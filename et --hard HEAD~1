@@ -1,0 +1,17 @@
+git log[33mcommit 735302825d498a709b69cdb27b0c8023f327c5f8[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: = <=>
+Date:   Mon Aug 5 07:54:32 2024 +0300
+
+    Models and Relationship Creation
+
+[33mcommit 06d06e7e567898db42af9ed7d1311bc5a61cc248[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: = <=>
+Date:   Fri Aug 2 08:43:47 2024 +0300
+
+    Init Project Structure
+
+[33mcommit c98f772cfac14ba96d19231bfa893cae991d4101[m
+Author: = <=>
+Date:   Fri Aug 2 08:12:16 2024 +0300
+
+    New Project
