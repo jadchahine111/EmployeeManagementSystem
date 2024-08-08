@@ -52,10 +52,6 @@ public class User extends Person {
     private Integer age;
 
     @NotBlank(message = "Password is mandatory")
-    @Pattern(
-            regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$",
-            message = "Password must be 8-20 characters long and include at least one digit, one uppercase letter, one lowercase letter, and one special character"
-    )
     @Column(
             name = "password",
             nullable = false,
@@ -124,6 +120,15 @@ public class User extends Person {
         this.employee = employee;
     }
 
+    public User(String username,  String email, String phoneNumber, String password, LocalDate dateOfBirth) {
+        super(email, phoneNumber);
+        this.username = username;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
     public User() {
         super(); // Call the no-argument constructor of Person
         this.createdAt = LocalDateTime.now();
@@ -163,17 +168,11 @@ public class User extends Person {
 
 
 
-    public @NotBlank @Pattern(
-            regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$",
-            message = "Password must be 8-20 characters long and include at least one digit, one uppercase letter, one lowercase letter, and one special character"
-    ) String getPassword() {
+    public @NotBlank  String getPassword() {
         return password;
     }
 
-    public void setPassword(@NotBlank @Pattern(
-            regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$",
-            message = "Password must be 8-20 characters long and include at least one digit, one uppercase letter, one lowercase letter, and one special character"
-    ) String password) {
+    public void setPassword(@NotBlank String password) {
         this.password = password;
     }
 
