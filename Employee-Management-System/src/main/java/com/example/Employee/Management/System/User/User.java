@@ -1,7 +1,6 @@
 package com.example.Employee.Management.System.User;
 
 import com.example.Employee.Management.System.Abstract.Person;
-import com.example.Employee.Management.System.Employee.Address;
 import com.example.Employee.Management.System.Employee.Employee;
 import com.example.Employee.Management.System.Attendance.Attendance;
 
@@ -64,8 +63,7 @@ public class User extends Person {
     )
     private String password;
 
-    @Embedded
-    private Address address;
+
 
     @Past(message = "Date of birth must be in the past")
     @Column(
@@ -87,22 +85,27 @@ public class User extends Person {
 
     @OneToOne(
             mappedBy = "user",
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private Employee employee;
 
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(
+            mappedBy = "user" ,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Attendance> attendances = new ArrayList<>();
 
 
 
     // Constructors
 
-    public User(Long id, String username, String email, String phoneNumber, Address address, String password, LocalDate dateOfBirth, Employee employee) {
+    public User(Long id, String username, String email, String phoneNumber, String password, LocalDate dateOfBirth, Employee employee) {
         super(email, phoneNumber);
         this.id = id;
         this.username = username;
-        this.address = address;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.createdAt = LocalDateTime.now();
@@ -111,10 +114,9 @@ public class User extends Person {
 
     }
 
-    public User(String username,  String email, String phoneNumber, Address address, String password, LocalDate dateOfBirth, Employee employee) {
+    public User(String username,  String email, String phoneNumber, String password, LocalDate dateOfBirth, Employee employee) {
         super(email, phoneNumber);
         this.username = username;
-        this.address = address;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.createdAt = LocalDateTime.now();
@@ -128,13 +130,7 @@ public class User extends Person {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public Address getAddress() {
-        return address;
-    }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     public Employee getEmployee() {
         return employee;
@@ -230,7 +226,6 @@ public class User extends Person {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
