@@ -1,4 +1,7 @@
 package com.example.Employee.Management.System.Job;
 
-public class JobService {
+import org.springframework.stereotype.Service;
+
+@Service
+public interface JobService {
 }

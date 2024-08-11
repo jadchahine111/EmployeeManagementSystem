@@ -1,4 +1,7 @@
 package com.example.Employee.Management.System.Attendance;
 
-public class AttendanceService {
+import org.springframework.stereotype.Service;
+
+@Service
+public interface AttendanceService {
 }

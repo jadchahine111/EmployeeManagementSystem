@@ -3,5 +3,5 @@ package com.example.Employee.Management.System.Permission;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface PermissionService {
+public class PermissionServiceImpl implements PermissionService {
 }

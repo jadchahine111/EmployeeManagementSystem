@@ -1,4 +1,7 @@
 package com.example.Employee.Management.System.Holiday;
 
-public class HolidayService {
+import org.springframework.stereotype.Service;
+
+@Service
+public interface HolidayService {
 }

@@ -1,4 +1,7 @@
 package com.example.Employee.Management.System.Department;
 
-public class DepartmentService {
+import org.springframework.stereotype.Service;
+
+@Service
+public interface DepartmentService {
 }

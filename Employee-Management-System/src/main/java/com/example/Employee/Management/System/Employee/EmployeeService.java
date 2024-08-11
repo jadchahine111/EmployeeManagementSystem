@@ -1,4 +1,10 @@
 package com.example.Employee.Management.System.Employee;
 
-public class EmployeeService {
+import com.example.Employee.Management.System.DTO.UserAndEmployeeDTO;
+import org.springframework.stereotype.Service;
+
+@Service
+public interface EmployeeService {
+
+
 }
