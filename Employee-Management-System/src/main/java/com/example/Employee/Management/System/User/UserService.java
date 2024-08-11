@@ -38,7 +38,7 @@ public class UserService {
 
     // GET user by email
     public User getUserByEmail(String email) {
-        Optional<User> userOptional = userRepository.findUserByEmail(email);
+        Optional<User> userOptional = userRepository.findByEmail(email);
         if (userOptional.isEmpty()) {
             throw new UserNotFoundException("User with email: '" + email + "' not found");
         }
@@ -61,7 +61,7 @@ public class UserService {
 
 
     public User addUser(User user) {
-        Optional<User> userOptional = userRepository.findUserByEmail(user.getEmail());
+        Optional<User> userOptional = userRepository.findByEmail(user.getEmail());
         if (userOptional.isPresent()) {
             throw new EmailAlreadyTakenException("Email is Taken. Please choose another email");
         }
@@ -92,7 +92,7 @@ public class UserService {
 
         if (email != null && !email.isBlank() && !email.equals(user.getEmail())) {
             // Optional: Add email format validation if not already in place
-            Optional<User> userOptional = userRepository.findUserByEmail(email);
+            Optional<User> userOptional = userRepository.findByEmail(email);
             if (userOptional.isPresent()) {
                 throw new EmailAlreadyTakenException("Email is Taken. Please choose another email");
             }

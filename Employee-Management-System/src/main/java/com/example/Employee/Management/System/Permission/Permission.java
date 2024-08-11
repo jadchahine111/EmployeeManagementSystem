@@ -59,6 +59,12 @@ public class Permission {
         this.description = description;
     }
 
+    public Permission(String type) {
+        this.type = type;
+    }
+
+
+
     public Permission() {
     }
 

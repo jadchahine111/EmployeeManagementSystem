@@ -23,7 +23,7 @@ public class UserEntityInfoUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findUserByEmail(email);
+        Optional<User> user = userRepository.findByEmail(email);
         return user.map(UserEntityInfoUserDetails::new).orElseThrow(() -> new UserNotFoundException("User does not exist"));
     }
 }

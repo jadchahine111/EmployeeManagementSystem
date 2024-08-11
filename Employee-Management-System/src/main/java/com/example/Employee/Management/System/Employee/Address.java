@@ -10,6 +10,10 @@ public class Address {
     private String zipcode;
 
 
+    // Default constructor
+    public Address() {
+    }
+
     public Address(String street, String city, String state, String zipcode) {
         this.street = street;
         this.city = city;
