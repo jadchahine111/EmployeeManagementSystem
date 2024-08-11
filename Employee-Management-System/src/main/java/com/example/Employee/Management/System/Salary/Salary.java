@@ -17,19 +17,8 @@ import jakarta.validation.constraints.NotNull;
 public class Salary {
 
     @Id
-    @SequenceGenerator(
-            name = "salary_sequence",
-            sequenceName = "salary_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "salary_sequence"
-    )
-    @Column(
-            name = "id",
-            updatable = false
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
     private Long id;
 
 

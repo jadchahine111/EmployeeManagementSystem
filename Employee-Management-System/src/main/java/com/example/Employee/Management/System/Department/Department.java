@@ -18,19 +18,8 @@ import java.util.List;
 public class Department {
 
     @Id
-    @SequenceGenerator(
-            name = "department_sequence",
-            sequenceName = "department_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "department_sequence"
-    )
-    @Column(
-            name = "id",
-            updatable = false
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
     private Long id;
 
     @NotBlank(message = "Name is mandatory")

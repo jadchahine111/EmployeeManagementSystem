@@ -16,19 +16,8 @@ import java.util.List;
 public class Job {
 
     @Id
-    @SequenceGenerator(
-            name = "job_sequence",
-            sequenceName = "job_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "job_sequence"
-    )
-    @Column(
-            name = "id",
-            updatable = false
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
     private Long id;
 
     @Column(

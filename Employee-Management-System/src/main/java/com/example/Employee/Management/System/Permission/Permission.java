@@ -14,19 +14,8 @@ import java.util.List;
 public class Permission {
 
     @Id
-    @SequenceGenerator(
-            name = "permission_sequence",
-            sequenceName = "permission_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "permission_sequence"
-    )
-    @Column(
-            name = "id",
-            updatable = false
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
     private Long id;
 
     @NotBlank(message = "Type is mandatory")

@@ -15,19 +15,8 @@ import java.util.List;
 public class Holiday {
 
         @Id
-        @SequenceGenerator(
-                name = "holiday_sequence",
-                sequenceName = "holiday_sequence",
-                allocationSize = 1
-        )
-        @GeneratedValue(
-                strategy = GenerationType.SEQUENCE,
-                generator = "holiday_sequence"
-        )
-        @Column(
-                name = "id",
-                updatable = false
-        )
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id", updatable = false)
         private Long id;
 
         @NotBlank(message = "Name is mandatory")

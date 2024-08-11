@@ -28,19 +28,8 @@ import java.util.List;
 public class Employee extends Person {
 
     @Id
-    @SequenceGenerator(
-            name = "employee_sequence",
-            sequenceName = "employee_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "employee_sequence"
-    )
-    @Column(
-            name = "id",
-            updatable = false
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
     private Long id;
 
     @Column(
