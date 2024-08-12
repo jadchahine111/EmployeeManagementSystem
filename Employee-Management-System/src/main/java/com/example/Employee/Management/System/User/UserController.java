@@ -20,58 +20,46 @@ public class UserController {
         this.userService = userService;
     }
 
-
-
-
-
-
     @PostMapping("/addUser")
     public ResponseEntity<User> addUser(@RequestBody User user) {
-        try {
-            User createdUser = userService.addUser(user);
-            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
-        } catch (EmailAlreadyTakenException e) {
-            return new ResponseEntity<>(null, HttpStatus.CONFLICT); // 409 Conflict
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); // 500 Internal Server Error
-        }
+        User createdUser = userService.addUser(user);
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
-
     @GetMapping
-    public List<User> getUsers() {
-       return userService.getUsers();
+    public ResponseEntity<List<User>> getUsers() {
+        List<User> users = userService.getUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping(path="/{id}")
-    public User getUserById(@PathVariable("id") Long id) {
-        return userService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+        User user = userService.getUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping(path="/{email}")
-    public User getUserByEmail(@PathVariable("email") String email) {
-        return userService.getUserByEmail(email);
+    @GetMapping(path="/email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
+        User user = userService.getUserByEmail(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @DeleteMapping(path="{id}")
-    public void deleteUser(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping(path="{id}")
-    public void updateUserInfo(@PathVariable("id") Long id,
-                               @RequestParam(required = false) String username,
-                               @RequestParam(required = false) String email,
-                               @RequestParam(required = false) String phoneNumber,
-                               @RequestParam(required = false) String password,
-                               @RequestParam(required = false) LocalDate dateOfBirth
-                               ) {
+    public ResponseEntity<User> updateUserInfo(@PathVariable("id") Long id,
+                                               @RequestParam(required = false) String username,
+                                               @RequestParam(required = false) String email,
+                                               @RequestParam(required = false) String phoneNumber,
+                                               @RequestParam(required = false) String password,
+                                               @RequestParam(required = false) LocalDate dateOfBirth) {
         userService.updateUser(id, username, email, phoneNumber, password, dateOfBirth);
+        User updatedUser = userService.getUserById(id); // Fetch updated user
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
-
-
-
-
-
-
 }
+

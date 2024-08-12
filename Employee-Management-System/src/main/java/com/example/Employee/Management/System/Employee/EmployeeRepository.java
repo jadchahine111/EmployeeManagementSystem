@@ -9,9 +9,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     Optional<Employee> findByEmail(String email);
 
-    @Query("select e from Employee e where e.user_id = ?1")
-    Optional<Employee> findByUserID(Long id);
+    Optional<Employee> findByUser_Id(Long userId);
+
 
 
     boolean existsByEmail(String email);
+
 }

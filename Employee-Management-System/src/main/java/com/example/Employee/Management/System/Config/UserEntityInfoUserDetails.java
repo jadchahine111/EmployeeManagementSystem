@@ -32,7 +32,7 @@ public class UserEntityInfoUserDetails implements UserDetails {
         if (permission != null) {
             this.roles = List.of(permission)
                     .stream()
-                    .map(p -> new SimpleGrantedAuthority("ROLE_" + p.getType()))
+                    .map(p -> new SimpleGrantedAuthority(p.getType()))
                     .collect(Collectors.toList());
         } else {
             this.roles = new ArrayList<>();

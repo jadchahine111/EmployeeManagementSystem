@@ -34,9 +34,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll() // No authentication needed for these APIs
-                        .requestMatchers("/api/admin/**").hasRole("HR") // Only HR Employees (Admin) can access
-                        .requestMatchers("/api/it/**").hasRole("IT") // Only IT Employees can access
-                        .requestMatchers("/api/finance/**").hasRole("FINANCE") // Only Finance Employees can access
+                        .requestMatchers("/api/admin/**" , "/api/employee/**").hasAuthority("FULL_ACCESS") // Only HR Employees (Admin) can access
+                        .requestMatchers("/api/it/**").hasAuthority("WRITE") // Only IT Employees can access
+                        .requestMatchers("/api/finance/**").hasAuthority("READ") // Only Finance Employees can access
                         .anyRequest().authenticated()) // All other endpoints require authentication
                 .csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection for simplicity
                 .sessionManagement(session -> session

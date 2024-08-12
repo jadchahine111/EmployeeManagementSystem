@@ -22,7 +22,7 @@ import java.util.List;
         name = "employee",
         uniqueConstraints = {
                 @UniqueConstraint(name = "employee_email_unique", columnNames = "email"),
-                @UniqueConstraint(name = "employee_userId_unique", columnNames = "userId")
+                @UniqueConstraint(name = "employee_user_Id_unique", columnNames = "user_id")
         }
 )
 public class Employee extends Person {
@@ -64,7 +64,7 @@ public class Employee extends Person {
 
 
     @OneToOne
-    @JoinColumn(name = "userId", unique = true, nullable = false)
+    @JoinColumn(name = "user_id", unique = true, nullable = false)
     @NotNull(message = "User is mandatory")
     private User user;
 
